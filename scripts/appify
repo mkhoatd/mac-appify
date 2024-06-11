@@ -50,10 +50,8 @@ REQUIRED: .app" 1>&2 && exit 1
 # Error: Unable to write image to file
 # fix: set valid size (square and less then 256x256)
 # sips -z 128 128 path/to/name.png
-[[ -n "$image" ]] && {
-    ! [ -e "${icns%/*}" ] && { ( set -x; mkdir -p "${icns%/*}" ) || exit; }
-    ( set -x; /usr/bin/sips -s format icns "$image" --out "$icns" ) || exit
-}
+cp "$image" "$icns"
+
 
 set -- \
 -c "Add CFBundleName string '$name'" \
